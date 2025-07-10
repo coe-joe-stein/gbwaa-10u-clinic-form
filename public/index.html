@@ -33,10 +33,17 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch('https://sheet.best/api/sheets/1pneM9PZxvjd20mgc-v9Z2NUbOpD5BgFHWSZ5w2cYdn4', {
+      const submission = {
+        Name: formData.playerName,
+        Age: formData.age,
+        Level: formData.lastLevel,
+        Email: formData.email,
+      };
+
+      await fetch('https://script.google.com/macros/s/AKfycbwVEU_HUaORThrhAr_7bnF-bC50qtEN21M31VJ1uL4oZ7SdAZICNJcqWxj32quqRW_6/exec', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(submission).toString(),
       });
       setSubmitted(true);
     } catch (err) {
