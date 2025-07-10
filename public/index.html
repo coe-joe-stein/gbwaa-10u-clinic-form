@@ -24,9 +24,11 @@
       function App() {
         const initialForm = {
           playerName: "",
-          age: "8",
-          lastLevel: "Spring 8U",
+          age: "",
+          lastLevel: "",
           email: "",
+          phoneNumber: "",
+          volunteer: "",
         };
         const [formData, setFormData] = useState(initialForm);
         const [submitted, setSubmitted] = useState(false);
@@ -52,7 +54,7 @@
           fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `Name=${formData.playerName}&Age=${formData.age}&Level=${formData.lastLevel}&Email=${formData.email}`,
+            body: `Name=${formData.playerName}&Age=${formData.age}&Level=${formData.lastLevel}&Email=${formData.email}&phoneNumber=${formData.phoneNumber}&volunteer=${formData.volunteer}`,
           })
             .then((res) => res.text())
             .then((data) => {
@@ -108,6 +110,7 @@
                   required
                   value={formData.playerName}
                   onChange={handleChange}
+                  disabled={loading}
                   className="w-full p-2 border rounded"
                 />
               </div>
@@ -121,8 +124,13 @@
                   name="age"
                   value={formData.age}
                   onChange={handleChange}
+                  required
+                  disabled={loading}
                   className="w-full p-2 border rounded"
                 >
+                  <option value="" disabled>
+                    Select Age
+                  </option>
                   <option value="8">8</option>
                   <option value="9">9</option>
                   <option value="10">10</option>
@@ -138,8 +146,13 @@
                   name="lastLevel"
                   value={formData.lastLevel}
                   onChange={handleChange}
+                  required
+                  disabled={loading}
                   className="w-full p-2 border rounded"
                 >
+                  <option value="" disabled>
+                    Select Level
+                  </option>
                   <option>Spring 8U</option>
                   <option>Spring 10U</option>
                   <option>Fall 8U</option>
@@ -159,8 +172,46 @@
                   required
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={loading}
                   className="w-full p-2 border rounded"
                 />
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1" htmlFor="phoneNumber">
+                  Parent’s Phone Number
+                </label>
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="tel"
+                  required
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full p-2 border rounded"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block mb-1" htmlFor="volunteer">
+                  Would you like to volunteer?
+                </label>
+                <select
+                  id="volunteer"
+                  name="volunteer"
+                  value={formData.volunteer}
+                  onChange={handleChange}
+                  required
+                  disabled={loading}
+                  className="w-full p-2 border rounded"
+                >
+                  <option value="" disabled>
+                    Select an option
+                  </option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
               </div>
 
               <button
