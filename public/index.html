@@ -36,10 +36,16 @@
           setFormData((prev) => ({ ...prev, [name]: value }));
         };
 
+        const resetForm = () => {
+          setFormData(initialForm);
+          setSubmitted(false);
+        };
+
         const handleSubmit = async (e) => {
           e.preventDefault();
           const url =
-            "https://script.google.com/macros/s/AKfycbwVEU_HUaORThrhAr_7bnF-bC50qtEN21M31VJ1uL4oZ7SdAZICNJcqWxj32quqRW_6/exec";
+            "https://script.google.com/macros/s/AKfycby-zrLURPLJvqSRbX6UqP47iyfl8h3rKNe7fUqD1ulaIJWX6Kz9fmyRYgMeSKTHzWv1/exec";
+
           fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -47,9 +53,15 @@
           })
             .then((res) => res.text())
             .then((data) => {
-              alert(data);
+              console.log("Response from Google Apps Script:", data);
+              setSubmitted(true); // <-- This triggers the thank-you screen
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+              console.error("Error submitting form:", error);
+              alert(
+                "There was an error submitting the form. Please try again."
+              );
+            });
         };
 
         if (submitted) {
