@@ -1,7 +1,7 @@
 {
   "name": "gbwaa-10u-clinic-form",
   "version": "1.0.0",
-  "homepage": "https://username.github.io/gbwaa-10u-clinic-form",
+  "homepage": "https://coe-joe-stein.github.io/gbwaa-10u-clinic-form",
   "scripts": {
     "predeploy": "echo \"building...\"",
     "deploy": "gh-pages -d public"
