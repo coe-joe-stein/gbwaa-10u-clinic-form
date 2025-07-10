@@ -49,12 +49,12 @@
           e.preventDefault();
           setLoading(true);
           const url =
-            "https://script.google.com/macros/s/AKfycby-zrLURPLJvqSRbX6UqP47iyfl8h3rKNe7fUqD1ulaIJWX6Kz9fmyRYgMeSKTHzWv1/exec";
+            "https://script.google.com/macros/s/AKfycbyO711QnP3JYY8lUGEx1IpP6Z0H7SQBge0nNlrZ_11X6WwA-BGIeAX4nUMIHL_MfE4b/exec";
 
           fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `Name=${formData.playerName}&Age=${formData.age}&Level=${formData.lastLevel}&Email=${formData.email}&phoneNumber=${formData.phoneNumber}&volunteer=${formData.volunteer}`,
+            body: `Name=${formData.playerName}&Age=${formData.age}&Level=${formData.lastLevel}&Email=${formData.email}&Phone=${formData.phoneNumber}&Volunteer=${formData.volunteer}`,
           })
             .then((res) => res.text())
             .then((data) => {
